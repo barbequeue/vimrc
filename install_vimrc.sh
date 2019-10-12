@@ -13,7 +13,6 @@ source ~/.vim/vimrcs/plugins_config.vim
 source ~/.vim/vimrcs/extended.vim
 
 try
-touch ~/.vim/my_configs.vim
 source ~/.vim/my_configs.vim
 catch
 endtry' > ~/.vimrc
