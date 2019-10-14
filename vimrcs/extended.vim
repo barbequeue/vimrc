@@ -29,10 +29,7 @@ set guioptions-=L
 
 " Colorscheme
 set background=dark
-try
-colorscheme peaksea
-catch
-endtry
+colorscheme iceberg
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -175,3 +172,24 @@ endfunc
 func! CurrentFileDir(cmd)
     return a:cmd . " " . expand("%:p:h") . "/"
 endfunc
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Cursor movement
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Disable <Arrow keys>
+" Warning: nightmare mode!
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+" Navigate with <Ctrl>-hjkl in Insert mode
+inoremap <C-h> <C-o>h
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
+inoremap <C-l> <C-o>l
