@@ -1,5 +1,6 @@
 # vimrc
 This is the full [amix configuration](https://github.com/amix/vimrc), but with some difference:
+* Neovim
 * In order to manage plugins more easily, moved to [vim-plug](https://github.com/junegunn/vim-plug)
 * Cursor movement in insert mode - use Ctrl+hjkl
 ## Install
