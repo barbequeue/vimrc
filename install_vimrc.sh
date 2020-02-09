@@ -9,7 +9,7 @@ cp ~/.vim/autoload/plug.vim ~/.local/share/nvim/site/autoload/plug.vim
 mkdir -p ~/.config/nvim/
 echo 'set runtimepath+=~/.vim
 
-source ~/.vim/plugins_list
+source ~/.vim/plugfile.vim
 
 source ~/.vim/vimrcs/basic.vim
 source ~/.vim/vimrcs/filetypes.vim
