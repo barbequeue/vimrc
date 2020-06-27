@@ -29,7 +29,12 @@ set guioptions-=L
 
 " Colorscheme
 set background=dark
-colorscheme default
+try
+  let g:badwolf_css_props_highlight=1
+  let g:badwolf_darkgutter=1
+  colorscheme badwolf
+catch
+endtry
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
