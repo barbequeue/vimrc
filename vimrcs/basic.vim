@@ -52,6 +52,10 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
+" :RLD reloads Vim by reloading its config init file
+" (useful for restarting Vim when something is not working as it should)"
+command! RLD so $MYVIMRC
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
