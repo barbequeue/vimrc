@@ -11,7 +11,7 @@ git clone https://github.com/barbequeue/vimrc.git ~/.vim
 ```
 3. Run
 ```
-sh install_vimrc.sh
+sh ~/.vim/install_vimrc.sh
 ```
 4. Start Vim and run
 ```
