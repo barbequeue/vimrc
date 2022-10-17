@@ -1,11 +1,6 @@
 #!/bin/sh
 set -e
 
-cd ~/.vim
-
-mkdir -p ~/.local/share/nvim/site/autoload/
-cp ~/.vim/autoload/plug.vim ~/.local/share/nvim/site/autoload/plug.vim
-
 mkdir -p ~/.config/nvim/
 echo 'set runtimepath+=~/.vim
 
