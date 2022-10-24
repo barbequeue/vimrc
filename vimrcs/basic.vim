@@ -270,6 +270,51 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 
 """"""""""""""""""""""""""""""
+" => Tab line
+""""""""""""""""""""""""""""""
+" Always show the tab line
+set showtabline=2
+
+" Format the tab line
+function! TabLineString()
+  let tablinestring = ''
+
+  for i in range(tabpagenr('$'))
+    " visually highlight selected tab page
+    let tablinestring ..= i + 1 == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
+
+    " set the tab page number for mouse clicks and display page number
+    let tablinestring ..= '%' .. (i + 1) .. 'T ' .. (i + 1)
+
+    " get buffer which is focused in each tab page
+    let buflist = tabpagebuflist(i + 1)
+    let winnr = tabpagewinnr(i + 1)
+    let buf = getbufinfo(buflist[winnr - 1])[0]
+
+    " label each tab page with focused buffer's file name or with default placeholder
+    let tablinestring ..= ' ' .. (strlen(buf.name) ? fnamemodify(buf.name, ':t') : '[No Name]')
+
+    " display plus character if focused buffer has changes
+    if buf.changed
+      let tablinestring ..= ' +'
+    endif
+
+    let tablinestring ..= ' '
+  endfor
+
+  " after the last tab fill tabline with empty cells and reset tab page number
+  let tablinestring ..= '%#TabLineFill#%T'
+
+  " right-align the label to close the current tab page
+  let tablinestring ..= '%=%999X X '
+
+  return tablinestring
+endfunction
+
+set tabline=%!TabLineString()
+
+
+""""""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
 " Always show the status line
