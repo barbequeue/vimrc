@@ -1,4 +1,4 @@
-call plug#begin('~/.vim/plugs/')
+call plug#begin()
 
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
