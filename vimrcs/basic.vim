@@ -275,42 +275,6 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " Always show the tab line
 set showtabline=2
 
-" Format the tab line
-function! TabLineString()
-  let tablinestring = ''
-
-  for i in range(tabpagenr('$'))
-    " visually highlight selected tab page
-    let tablinestring ..= i + 1 == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
-
-    " set the tab page number for mouse clicks and display page number
-    let tablinestring ..= '%' .. (i + 1) .. 'T ' .. (i + 1)
-
-    " get buffer which is focused in each tab page
-    let buflist = tabpagebuflist(i + 1)
-    let winnr = tabpagewinnr(i + 1)
-    let buf = getbufinfo(buflist[winnr - 1])[0]
-
-    " label each tab page with focused buffer's file name or with default placeholder
-    let tablinestring ..= ' ' .. (strlen(buf.name) ? fnamemodify(buf.name, ':t') : '[No Name]')
-
-    " display plus character if focused buffer has changes
-    if buf.changed
-      let tablinestring ..= ' +'
-    endif
-
-    let tablinestring ..= ' '
-  endfor
-
-  " after the last tab fill tabline with empty cells and reset tab page number
-  let tablinestring ..= '%#TabLineFill#%T'
-
-  " right-align the label to close the current tab page
-  let tablinestring ..= '%=%999X X '
-
-  return tablinestring
-endfunction
-
 set tabline=%!TabLineString()
 
 
@@ -389,6 +353,57 @@ map <leader>pp :setlocal paste!<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Returns the string representing current state of opened tabs and panes within the tabs
+function! TabLineString()
+  let tablinestring = ''
+
+  for i in range(tabpagenr('$'))
+    " visually highlight selected tab page
+    let tablinestring ..= i + 1 == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
+
+    " set the tab page number for mouse clicks and display page number
+    let tablinestring ..= '%' .. (i + 1) .. 'T ' .. (i + 1)
+
+    " get buffer which is focused in each tab page
+    let buflist = tabpagebuflist(i + 1)
+    let winnr = tabpagewinnr(i + 1)
+    let buf = getbufinfo(buflist[winnr - 1])[0]
+
+    " label each tab page with focused buffer's file name or with default placeholder
+    if strlen(buf.name)
+      let filename = fnamemodify(buf.name, ':t')
+      let filenamemaxlen = 30
+      let prefix = '...'
+
+      if strlen(filename) > 30
+        let filenameposstart = strlen(filename) - filenamemaxlen + strlen(prefix)
+        let filenameposend = -1
+
+        let tablinestring ..= ' ' .. prefix .. filename[filenameposstart:filenameposend]
+      else
+        let tablinestring ..= ' ' .. filename
+      endif
+    else
+      let tablinestring ..= ' [No Name]'
+    endif
+
+    " display plus character if focused buffer has changes
+    if buf.changed
+      let tablinestring ..= ' +'
+    endif
+
+    let tablinestring ..= ' '
+  endfor
+
+  " after the last tab fill tabline with empty cells and reset tab page number
+  let tablinestring ..= '%#TabLineFill#%T'
+
+  " right-align the label to close the current tab page
+  let tablinestring ..= '%=%999X X '
+
+  return tablinestring
+endfunction
+
 " Returns true if paste mode is enabled
 function! HasPaste()
     if &paste
