@@ -1,9 +1,9 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer:
-"       Amir Salihefendic — @amix3k
+" Original config maintainer:
+"       Amir Salihefendic - @amix3k
 "
 " Awesome_version:
-"       Get this config, nice color schemes and lots of plugins!
+"       Get the config, nice color schemes and lots of plugins!
 "
 "       Install the awesome version from:
 "
