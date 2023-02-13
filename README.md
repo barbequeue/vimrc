@@ -13,8 +13,4 @@ git clone https://github.com/barbequeue/vimrc.git ~/.vim
 ```
 sh ~/.vim/install_vimrc.sh
 ```
-4. Start Vim and run
-```
-:PlugInstall
-```
 Done!
