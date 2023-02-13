@@ -54,7 +54,7 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
 " :RLD reloads Vim by reloading its config init file
 " (useful for restarting Vim when something is not working as it should)
-command! RLD so $MYVIMRC
+command! -nargs=0 -bar -bang RLD so $MYVIMRC
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
