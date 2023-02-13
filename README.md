@@ -14,3 +14,6 @@ git clone https://github.com/barbequeue/vimrc.git ~/.vim
 sh ~/.vim/install_vimrc.sh
 ```
 Done!
+## Optional steps
+You may want to run this command to enable fzf in your terminal as well
+~/.local/share/nvim/plugged/fzf/install
